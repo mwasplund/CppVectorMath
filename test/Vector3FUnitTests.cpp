@@ -2,7 +2,6 @@
 //     Copyright (c) MWASPLUND. All rights reserved.
 // </copyright>
 
-#include "pch.h"
 #include <Vector3F.h>
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
