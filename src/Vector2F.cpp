@@ -4,44 +4,44 @@
 
 #include "Vector2F.h"
 
+#include "Vector2Utils.h"
+#include "VectorUtils.h"
 #include "ScalarF.h"
 
-using namespace DirectX;
 using namespace VectorMath;
 
 std::wostream& VectorMath::operator<<(std::wostream& stream, const Vector2F& value)
 {
+	auto values = value.GetValues();
 	stream << L"["
-		<< value.GetX().GetValue() << L","
-		<< value.GetY().GetValue() << L"]";
+		<< values[0] << L","
+		<< values[1] << L"]";
 
 	return stream;
 }
 
 /*static*/ Vector2F Vector2F::Zero()
 {
-	return XMVectorZero();
+	return VectorUtils::Zero();
 }
 
 /*static*/ Vector2F Vector2F::One()
 {
-	return XMVectorSplatOne();
+	return VectorUtils::One();
 }
 
 /*static*/ Vector2F Vector2F::UnitX()
 {
-	XMVECTORF32 result = { 1.0f, 0.0f, 0.0f, 0.0f };
-	return result.v;
+	return VectorUtils::UnitX();
 }
 
 /*static*/ Vector2F Vector2F::UnitY()
 {
-	XMVECTORF32 result = { 0.0f, 1.0f, 0.0f, 0.0f };
-	return result.v;
+	return VectorUtils::UnitY();
 }
 
 Vector2F::Vector2F() :
-	m_values({ 0, 0 })
+	m_values(VectorUtils::Zero())
 {
 }
 
@@ -50,44 +50,49 @@ Vector2F::Vector2F(float x, float y) :
 {
 }
 
+std::array<float, 2> Vector2F::GetValues() const
+{
+	return Vector2Utils::Store(m_values);
+}
+
 ScalarF Vector2F::GetX() const
 {
-	return XMVectorSplatX(m_values);
+	return VectorUtils::SplatX(m_values);
 }
 
 ScalarF Vector2F::GetY() const
 {
-	return XMVectorSplatY(m_values);
+	return VectorUtils::SplatY(m_values);
 }
 
 void Vector2F::SetX(float value)
 {
-	m_values = XMVectorSetX(m_values, value);
+	m_values = VectorUtils::SetX(m_values, value);
 }
 
 void Vector2F::SetY(float value)
 {
-	m_values = XMVectorSetY(m_values, value);
+	m_values = VectorUtils::SetY(m_values, value);
 }
 
 ScalarF Vector2F::Length() const
 {
-	return XMVector2Length(m_values);
+	return Vector2Utils::Length(m_values);
 }
 
 Vector2F Vector2F::Normalize() const
 {
-	return XMVector2Normalize(m_values);
+	return Vector2Utils::Normalize(m_values);
 }
 
 bool Vector2F::IsNaN() const
 {
-	return XMVector2IsNaN(m_values);
+	return Vector2Utils::IsNaN(m_values);
 }
 
 bool Vector2F::IsInfinite() const
 {
-	return XMVector2IsInfinite(m_values);
+	return Vector2Utils::IsInfinite(m_values);
 }
 
 Vector2F& Vector2F::operator=(const Vector2F& rhs)
@@ -134,52 +139,52 @@ Vector2F& Vector2F::operator/=(const ScalarF& rhs)
 
 Vector2F Vector2F::operator-() const
 {
-	return XMVectorNegate(m_values);
+	return VectorUtils::Negate(m_values);
 }
 
 Vector2F Vector2F::operator+(const Vector2F& rhs) const
 {
-	return XMVectorAdd(m_values, rhs);
+	return VectorUtils::Add(m_values, rhs);
 }
 
 Vector2F Vector2F::operator-(const Vector2F& rhs) const
 {
-	return XMVectorSubtract(m_values, rhs);
+	return VectorUtils::Subtract(m_values, rhs);
 }
 
 Vector2F Vector2F::operator*(const Vector2F& rhs) const
 {
-	return XMVectorMultiply(m_values, rhs);
+	return VectorUtils::Multiply(m_values, rhs);
 }
 
 Vector2F Vector2F::operator/(const Vector2F& rhs) const
 {
-	return XMVectorDivide(m_values, rhs);
+	return VectorUtils::Divide(m_values, rhs);
 }
 
 Vector2F Vector2F::operator*(const ScalarF& rhs) const
 {
-	return XMVectorMultiply(m_values, rhs);
+	return VectorUtils::Multiply(m_values, rhs);
 }
 
 Vector2F Vector2F::operator/(const ScalarF& rhs) const
 {
-	return XMVectorDivide(m_values, rhs);
+	return VectorUtils::Divide(m_values, rhs);
 }
 
 bool Vector2F::operator==(const Vector2F& rhs) const
 {
-	return XMVector2Equal(m_values, rhs);
+	return Vector2Utils::Equal(m_values, rhs);
 }
 
 bool Vector2F::operator!=(const Vector2F& rhs) const
 {
-	return XMVector2NotEqual(m_values, rhs);
+	return Vector2Utils::NotEqual(m_values, rhs);
 }
 
 bool Vector2F::NearEqual(const Vector2F& rhs, const ScalarF& epsilon) const
 {
-	return XMVector2NearEqual(m_values, rhs, epsilon);
+	return Vector2Utils::NearEqual(m_values, rhs, epsilon);
 }
 
 Vector2F::Vector2F(SimdVector values) :

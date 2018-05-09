@@ -3,6 +3,7 @@
 // </copyright>
 
 #pragma once
+#include "VectorMath.h"
 
 namespace VectorMath
 {
@@ -16,9 +17,6 @@ namespace VectorMath
 		friend class QuaternionF;
 		friend class ScalarF;
 		friend class Vector4F;
-
-		// TODO : Move raw code to shared utils
-		friend class BoundingBoxF;
 
 	public:
 		/// <summary>
@@ -43,6 +41,7 @@ namespace VectorMath
 		/// <summary>
 		/// Named Access
 		/// </summary>
+		std::array<float, 3> GetValues() const;
 		ScalarF GetX() const;
 		ScalarF GetY() const;
 		ScalarF GetZ() const;

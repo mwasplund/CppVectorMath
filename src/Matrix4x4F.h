@@ -3,6 +3,7 @@
 // </copyright>
 
 #pragma once
+#include "VectorMath.h"
 #include "Vector4F.h"
 
 namespace VectorMath
@@ -39,7 +40,8 @@ namespace VectorMath
 		static Matrix4x4F PerspectiveFovRH(
 			float fovAngleY,
 			float aspectRatio,
-			const RangeF& depth);
+			float depthMin,
+			float depthMax);
 
 		static Matrix4x4F Scaling(const Vector3F& scale);
 		static Matrix4x4F Translation(const Vector3F& translation);

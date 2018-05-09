@@ -3,6 +3,7 @@
 // </copyright>
 
 #pragma once
+#include "VectorMath.h"
 
 namespace VectorMath
 {
@@ -31,12 +32,8 @@ namespace VectorMath
 	public:
 		/// <summary>
 		/// Named Access
-		/// TODO : PROLY REMOVE
 		/// </summary>
-		float GetX() const;
-		float GetY() const;
-		float GetZ() const;
-		float GetW() const;
+		std::array<float, 4> GetValues() const;
 
 		/// <summary>
 		/// Assignment Operators

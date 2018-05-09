@@ -4,57 +4,56 @@
 
 #include "Vector3F.h"
 
+#include "Vector3Utils.h"
+#include "VectorUtils.h"
 #include "ScalarF.h"
 
-using namespace DirectX;
 using namespace VectorMath;
 
 std::wostream& VectorMath::operator<<(std::wostream& stream, const Vector3F& value)
 {
+	auto values = value.GetValues();
 	stream << L"["
-		<< value.GetX().GetValue() << L","
-		<< value.GetY().GetValue() << L","
-		<< value.GetZ().GetValue() << L"]";
+		<< values[0] << L","
+		<< values[1] << L","
+		<< values[2] << L"]";
 
 	return stream;
 }
 
 /*static*/ Vector3F Vector3F::Zero()
 {
-	return XMVectorZero();
+	return VectorUtils::Zero();
 }
 
 /*static*/ Vector3F Vector3F::One()
 {
-	return XMVectorSplatOne();
+	return VectorUtils::One();
 }
 
 /*static*/ Vector3F Vector3F::UnitX()
 {
-	XMVECTORF32 result = { 1.0f, 0.0f, 0.0f, 0.0f };
-	return result.v;
+	return VectorUtils::UnitX();
 }
 
 /*static*/ Vector3F Vector3F::UnitY()
 {
-	XMVECTORF32 result = { 0.0f, 1.0f, 0.0f, 0.0f };
-	return result.v;
+	return VectorUtils::UnitY();
 }
 
 /*static*/ Vector3F Vector3F::UnitZ()
 {
-	XMVECTORF32 result = { 0.0f, 0.0f, 1.0f, 0.0f };
-	return result.v;
+	return VectorUtils::UnitZ();
 }
 
 /*static*/ Vector3F Vector3F::Cross(const Vector3F& lhs, const Vector3F& rhs)
 {
-	return XMVector3Cross(lhs, rhs);
+	return Vector3Utils::Cross(lhs, rhs);
 }
 
 /*static*/ ScalarF Vector3F::Dot(const Vector3F& lhs, const Vector3F& rhs)
 {
-	return XMVector3Dot(lhs, rhs);
+	return Vector3Utils::Dot(lhs, rhs);
 }
 
 Vector3F::Vector3F() :
@@ -63,58 +62,63 @@ Vector3F::Vector3F() :
 }
 
 Vector3F::Vector3F(float x, float y, float z) :
-	m_values(XMVectorSet(x, y, z, 0))
+	m_values(VectorUtils::Set(x, y, z, 0))
 {
+}
+
+std::array<float, 3> Vector3F::GetValues() const
+{
+	return Vector3Utils::Store(m_values);
 }
 
 ScalarF Vector3F::GetX() const
 {
-	return XMVectorSplatX(m_values);
+	return VectorUtils::SplatX(m_values);
 }
 
 ScalarF Vector3F::GetY() const
 {
-	return XMVectorSplatY(m_values);
+	return VectorUtils::SplatY(m_values);
 }
 
 ScalarF Vector3F::GetZ() const
 {
-	return XMVectorSplatZ(m_values);
+	return VectorUtils::SplatZ(m_values);
 }
 
 void Vector3F::SetX(float value)
 {
-	m_values = XMVectorSetX(m_values, value);
+	m_values = VectorUtils::SetX(m_values, value);
 }
 
 void Vector3F::SetY(float value)
 {
-	m_values = XMVectorSetY(m_values, value);
+	m_values = VectorUtils::SetY(m_values, value);
 }
 
 void Vector3F::SetZ(float value)
 {
-	m_values = XMVectorSetZ(m_values, value);
+	m_values = VectorUtils::SetZ(m_values, value);
 }
 
 ScalarF Vector3F::Length() const
 {
-	return XMVector3Length(m_values);
+	return Vector3Utils::Length(m_values);
 }
 
 Vector3F Vector3F::Normalize() const
 {
-	return XMVector3Normalize(m_values);
+	return Vector3Utils::Normalize(m_values);
 }
 
 bool Vector3F::IsNaN() const
 {
-	return XMVector3IsNaN(m_values);
+	return Vector3Utils::IsNaN(m_values);
 }
 
 bool Vector3F::IsInfinite() const
 {
-	return XMVector3IsInfinite(m_values);
+	return Vector3Utils::IsInfinite(m_values);
 }
 
 Vector3F& Vector3F::operator=(const Vector3F& rhs)
@@ -161,52 +165,52 @@ Vector3F& Vector3F::operator/=(const ScalarF& rhs)
 
 Vector3F Vector3F::operator-() const
 {
-	return XMVectorNegate(m_values);
+	return VectorUtils::Negate(m_values);
 }
 
 Vector3F Vector3F::operator+(const Vector3F& rhs) const
 {
-	return XMVectorAdd(m_values, rhs);
+	return VectorUtils::Add(m_values, rhs);
 }
 
 Vector3F Vector3F::operator-(const Vector3F& rhs) const
 {
-	return XMVectorSubtract(m_values, rhs);
+	return VectorUtils::Subtract(m_values, rhs);
 }
 
 Vector3F Vector3F::operator*(const Vector3F& rhs) const
 {
-	return XMVectorMultiply(m_values, rhs);
+	return VectorUtils::Multiply(m_values, rhs);
 }
 
 Vector3F Vector3F::operator/(const Vector3F& rhs) const
 {
-	return XMVectorDivide(m_values, rhs);
+	return VectorUtils::Divide(m_values, rhs);
 }
 
 Vector3F Vector3F::operator*(const ScalarF& rhs) const
 {
-	return XMVectorMultiply(m_values, rhs);
+	return VectorUtils::Multiply(m_values, rhs);
 }
 
 Vector3F Vector3F::operator/(const ScalarF& rhs) const
 {
-	return XMVectorDivide(m_values, rhs);
+	return VectorUtils::Divide(m_values, rhs);
 }
 
 bool Vector3F::operator==(const Vector3F& rhs) const
 {
-	return XMVector3Equal(m_values, rhs);
+	return VectorUtils::3Equal(m_values, rhs);
 }
 
 bool Vector3F::operator!=(const Vector3F& rhs) const
 {
-	return XMVector3NotEqual(m_values, rhs);
+	return VectorUtils::3NotEqual(m_values, rhs);
 }
 
 bool Vector3F::NearEqual(const Vector3F& rhs, const ScalarF& epsilon) const
 {
-	return XMVector3NearEqual(m_values, rhs, epsilon);
+	return VectorUtils::3NearEqual(m_values, rhs, epsilon);
 }
 
 Vector3F::Vector3F(SimdVector values) :

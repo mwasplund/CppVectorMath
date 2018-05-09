@@ -4,14 +4,12 @@
 
 #include "Matrix4x4F.h"
 
-#include "MathConstants.h"
+#include <cassert>s
 #include "QuaternionF.h"
-#include "RangeF.h"
 #include "ScalarF.h"
 #include "Vector3F.h"
 #include "VectorUtils.h"
 
-using namespace DirectX;
 using namespace VectorMath;
 
 std::wostream& VectorMath::operator<<(std::wostream& stream, const Matrix4x4F& value)
@@ -105,7 +103,8 @@ std::wostream& VectorMath::operator<<(std::wostream& stream, const Matrix4x4F& v
 /*static*/ Matrix4x4F Matrix4x4F::PerspectiveFovRH(
 	float fovAngleY,
 	float aspectRatio,
-	const RangeF& depth)
+	float depthMin,
+	float depthMax)
 {
 	// TODO : SIMD VERSIONS
 	float sinFov = std::sin(0.5f * fovAngleY);
@@ -113,13 +112,13 @@ std::wostream& VectorMath::operator<<(std::wostream& stream, const Matrix4x4F& v
 
 	float height = cosFov / sinFov;
 	float width = height / aspectRatio;
-	float fRange = depth.GetMax() / (depth.GetMin() - depth.GetMax());
+	float fRange = depthMax / (depthMin - depthMax);
 
 	Matrix4x4F result;
 	result[0] = Vector4F(width, 0.0f, 0.0f, 0.0f);
 	result[1] = Vector4F(0.0f, height, 0.0f, 0.0f);
 	result[2] = Vector4F(0.0f, 0.0f, fRange, -1.0f);
-	result[3] = Vector4F(0.0f, 0.0f, (fRange * depth.GetMin()), 0.0f);
+	result[3] = Vector4F(0.0f, 0.0f, (fRange * depthMin), 0.0f);
 
 	return result;
 }

@@ -8,7 +8,6 @@
 #include "Vector3F.h"
 #include "Vector4F.h"
 
-using namespace DirectX;
 using namespace VectorMath;
 
 std::wostream& VectorMath::operator<<(std::wostream& stream, const QuaternionF& value)
@@ -44,22 +43,22 @@ QuaternionF::QuaternionF(const Vector3F& axis, float angle) :
 
 float QuaternionF::GetX() const
 {
-	return XMVectorGetX(m_values);
+	return VectorUtils::GetX(m_values);
 }
 
 float QuaternionF::GetY() const
 {
-	return XMVectorGetY(m_values);
+	return VectorUtils::GetY(m_values);
 }
 
 float QuaternionF::GetZ() const
 {
-	return XMVectorGetZ(m_values);
+	return VectorUtils::GetZ(m_values);
 }
 
 float QuaternionF::GetW() const
 {
-	return XMVectorGetW(m_values);
+	return VectorUtils::GetW(m_values);
 }
 
 QuaternionF& QuaternionF::operator=(const QuaternionF& rhs)
@@ -81,7 +80,7 @@ QuaternionF QuaternionF::operator~() const
 
 QuaternionF QuaternionF::operator-() const
 {
-	return XMVectorNegate(m_values);
+	return VectorUtils::Negate(m_values);
 }
 
 QuaternionF QuaternionF::operator*(const QuaternionF& rhs) const
@@ -91,7 +90,7 @@ QuaternionF QuaternionF::operator*(const QuaternionF& rhs) const
 
 Vector3F QuaternionF::operator*(const Vector3F& rhs) const
 {
-	return XMVector3Rotate(rhs, m_values);
+	return VectorUtils::3Rotate(rhs, m_values);
 }
 
 bool QuaternionF::operator==(const QuaternionF& rhs) const

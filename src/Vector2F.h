@@ -3,6 +3,7 @@
 // </copyright>
 
 #pragma once
+#include "VectorMath.h"
 
 namespace VectorMath
 {
@@ -33,6 +34,7 @@ namespace VectorMath
 		/// <summary>
 		/// Named Access
 		/// </summary>
+		std::array<float, 2> GetValues() const;
 		ScalarF GetX() const;
 		ScalarF GetY() const;
 		void SetX(float value);
