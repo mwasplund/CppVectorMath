@@ -1,9 +1,8 @@
 // <copyright file="Matrix4x4F.h" company="mwasplund"> 
-//     Copyright (c) MWASPLUND. All rights reserved.
+//   Copyright (c) mwasplund. All rights reserved.
 // </copyright>
 
 #pragma once
-#include "VectorMath.h"
 #include "Vector4F.h"
 
 namespace VectorMath
@@ -11,7 +10,7 @@ namespace VectorMath
 	/// <summary>
 	/// The matrix 4x4 floating point
 	/// </summary>
-	__declspec(align(16)) class Matrix4x4F
+	export __declspec(align(16)) class Matrix4x4F
 	{
 		friend std::wostream& operator<<(std::wostream& stream, const Matrix4x4F& value);
 

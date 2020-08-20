@@ -1,16 +1,15 @@
 // <copyright file="Vector4F.h" company="mwasplund"> 
-//     Copyright (c) MWASPLUND. All rights reserved.
+//   Copyright (c) mwasplund. All rights reserved.
 // </copyright>
 
 #pragma once
-#include "VectorMath.h"
 
 namespace VectorMath
 {
 	/// <summary>
 	/// The floating point point 4D
 	/// </summary>
-	class Vector4F
+	export class Vector4F
 	{
 		friend std::wostream& operator<<(std::wostream& stream, const Vector4F& value);
 		friend class Matrix4x4F;
@@ -93,5 +92,7 @@ namespace VectorMath
 		/// </summary>
 		SimdVector m_values;
 	};
+
+	export std::wostream& operator<<(std::wostream& stream, const Vector4F& value);
 } // namespace VectorMath
 

@@ -1,16 +1,15 @@
 // <copyright file="ScalarF.h" company="mwasplund"> 
-//     Copyright (c) MWASPLUND. All rights reserved.
+//   Copyright (c) mwasplund. All rights reserved.
 // </copyright>
 
 #pragma once
-#include "VectorMath.h"
 
 namespace VectorMath
 {
 	/// <summary>
 	/// The scalar value
 	/// </summary>
-	class ScalarF
+	export class ScalarF
 	{
 		friend std::wostream& operator<<(std::wostream& stream, const ScalarF& value);
 		friend class Vector4F;
@@ -70,7 +69,8 @@ namespace VectorMath
 		bool operator!=(const ScalarF& rhs) const;
 		bool NearEqual(const ScalarF& rhs, const ScalarF& epsilon) const;
 
-	private:
+	// TODO: Friend bug
+	// private:
 		/// <summary>
 		/// Raw Access
 		/// </summary>
@@ -82,5 +82,7 @@ namespace VectorMath
 		/// </summary>
 		SimdVector m_values;
 	};
+	
+	export std::wostream& operator<<(std::wostream& stream, const ScalarF& value);
 } // namespace VectorMath
 

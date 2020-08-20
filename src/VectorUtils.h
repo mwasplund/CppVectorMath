@@ -1,9 +1,8 @@
 // <copyright file="VectorUtils.h" company="mwasplund"> 
-//     Copyright (c) MWASPLUND. All rights reserved.
+//   Copyright (c) mwasplund. All rights reserved.
 // </copyright>
 
 #pragma once
-#include "VectorMath.h"
 
 namespace VectorMath
 {
@@ -54,9 +53,5 @@ namespace VectorMath
 		static SimdVector Subtract(const SimdVector& lhs, const SimdVector& rhs);
 		static SimdVector Multiply(const SimdVector& lhs, const SimdVector& rhs);
 		static SimdVector Divide(const SimdVector& lhs, const SimdVector& rhs);
-
-		// Comparison methods
-		static bool NearEqual(const SimdVector& lhs, const SimdVector& rhs, const SimdVector& epsilon);
-
 	};
 }

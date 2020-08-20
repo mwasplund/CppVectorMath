@@ -1,9 +1,8 @@
 // <copyright file="Vector4Utils.h" company="mwasplund"> 
-//     Copyright (c) MWASPLUND. All rights reserved.
+//   Copyright (c) mwasplund. All rights reserved.
 // </copyright>
 
 #pragma once
-#include "VectorMath.h"
 
 namespace VectorMath
 {

@@ -1,16 +1,15 @@
 // <copyright file="QuaternionF.h" company="mwasplund"> 
-//     Copyright (c) MWASPLUND. All rights reserved.
+//   Copyright (c) mwasplund. All rights reserved.
 // </copyright>
 
 #pragma once
-#include "VectorMath.h"
 
 namespace VectorMath
 {
 	/// <summary>
 	/// The floating point point 4D
 	/// </summary>
-	class QuaternionF
+	export class QuaternionF
 	{
 		friend std::wostream& operator<<(std::wostream& stream, const QuaternionF& value);
 		friend class Matrix4x4F;

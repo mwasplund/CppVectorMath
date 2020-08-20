@@ -1,9 +1,8 @@
 // <copyright file="ScalarUtils.h" company="mwasplund"> 
-//     Copyright (c) MWASPLUND. All rights reserved.
+//   Copyright (c) mwasplund. All rights reserved.
 // </copyright>
 
 #pragma once
-#include "VectorMath.h"
 
 namespace VectorMath
 {
@@ -22,6 +21,5 @@ namespace VectorMath
 
 		// Store
 		static float Store(const SimdVector& values);
-
 	};
 }

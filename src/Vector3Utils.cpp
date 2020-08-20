@@ -1,11 +1,12 @@
 // <copyright file="Vector3Utils.h" company="mwasplund"> 
-//     Copyright (c) MWASPLUND. All rights reserved.
+//   Copyright (c) mwasplund. All rights reserved.
 // </copyright>
 
-#include "Vector3Utils.h"
+module;
 
-#include "VectorUtils.h"
 #include <cmath>
+
+module VectorMath;
 
 using namespace VectorMath;
 

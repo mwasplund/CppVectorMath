@@ -1,16 +1,15 @@
 // <copyright file="Vector2F.h" company="mwasplund"> 
-//     Copyright (c) MWASPLUND. All rights reserved.
+//   Copyright (c) mwasplund. All rights reserved.
 // </copyright>
 
 #pragma once
-#include "VectorMath.h"
 
 namespace VectorMath
 {
 	/// <summary>
 	/// The floating point vector 2D
 	/// </summary>
-	class Vector2F
+	export class Vector2F
 	{
 		friend std::wostream& operator<<(std::wostream& stream, const Vector2F& value);
 		friend class ScalarF;
@@ -93,5 +92,7 @@ namespace VectorMath
 		/// </summary>
 		SimdVector m_values;
 	};
+
+	export std::wostream& operator<<(std::wostream& stream, const Vector2F& value);
 } // namespace VectorMath
 

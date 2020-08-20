@@ -1,9 +1,8 @@
 // <copyright file="Vector4Utils.h" company="mwasplund"> 
-//     Copyright (c) MWASPLUND. All rights reserved.
+//   Copyright (c) mwasplund. All rights reserved.
 // </copyright>
 
 #pragma once
-#include "VectorMath.h"
 
 namespace VectorMath
 {
@@ -13,12 +12,6 @@ namespace VectorMath
 	class Vector4Utils
 	{
 	public:
-		// Math
-		static SimdVector LengthSq(const SimdVector& values);
-		static SimdVector Length(const SimdVector& values);
-		static SimdVector Normalize(const SimdVector& values);
-		static SimdVector Dot(const SimdVector& lhs, const SimdVector& rhs);
-
 		// Comparison methods
 		static bool Equal(const SimdVector& lhs, const SimdVector& rhs);
 		static bool NotEqual(const SimdVector& lhs, const SimdVector& rhs);

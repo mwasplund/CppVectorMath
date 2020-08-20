@@ -1,0 +1,29 @@
+Name = "VectorMath"
+Version = "0.1.0"
+Public = "src/VectorMath.cpp"
+Source = [
+	"src/Matrix4x4F.cpp",
+	"src/QuaternionF.cpp",
+	"src/ScalarF.cpp",
+	"src/ScalarUtils.cpp",
+	"src/Vector2F.cpp",
+	"src/Vector2Utils.cpp",
+	"src/Vector3F.cpp",
+	"src/Vector3Utils.cpp",
+	"src/Vector4F.cpp",
+	"src/Vector4Utils.cpp",
+	"src/VectorUtils.cpp",
+]
+DevDependencies = [
+	"Soup.Test@0.1.1",
+	"Soup.Test.Assert@0.1.4",
+]
+
+	[Tests]
+	Source = [
+		"test/gen/Main.cpp",
+	]
+	IncludePaths = [
+		"test/",
+		"test/gen/",
+	]
